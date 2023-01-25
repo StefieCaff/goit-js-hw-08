@@ -5,18 +5,22 @@ import Throttle from 'lodash.throttle';
 const feedbackForm = document.querySelector("form.feedback-form");
 const FEEDBACK_FORM_KEY = "feedback-form-state";
 
-//const throttle = _.throttle(inputStorage, 500);
 
 //on load--check local storage-- add data if there is some
 
 function loadStorage() {
-    
-    localStorage.getItem(FEEDBACK_FORM_KEY);
-    const loadedData = localStorage.getItem(FEEDBACK_FORM_KEY);
-    const parsedData = JSON.parse(loadedData);
+    try {
+        localStorage.getItem(FEEDBACK_FORM_KEY);
+        const loadedData = localStorage.getItem(FEEDBACK_FORM_KEY);
+        const parsedData = JSON.parse(loadedData);
   
-    document.querySelector("textarea").value = parsedData.message;
-    document.querySelector("input").value = parsedData.email;
+        document.querySelector("textarea").value = parsedData.message;
+        document.querySelector("input").value = parsedData.email;
+    } catch (error) {
+        alert("The fields must be filled in. Thanks!");
+        feedbackForm.reset();
+        return false;
+    }
 };
 
 
@@ -56,7 +60,7 @@ const submitfeedbackForm = (event) => {
     console.log(feedbackFormData);
     feedbackForm.reset();
 };
-
+Throttle(inputStorage, 500);
 feedbackForm.addEventListener("input", inputStorage);
 feedbackForm.addEventListener("submit", submitfeedbackForm);
 loadStorage();
