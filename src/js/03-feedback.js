@@ -38,7 +38,7 @@ const inputStorage = (event) => {
     localStorage.setItem(FEEDBACK_FORM_KEY, JSON.stringify(feedbackStorageData));
 };
 
-//submit function and print object in console
+//submit function print object in console remove item local storage
 const submitfeedbackForm = (event) => {
     event.preventDefault();
 
@@ -59,33 +59,12 @@ const submitfeedbackForm = (event) => {
     
     console.log(feedbackFormData);
     feedbackForm.reset();
+    localStorage.removeItem(FEEDBACK_FORM_KEY);
 };
+
+// event listeners and function calls
 Throttle(inputStorage, 500);
 feedbackForm.addEventListener("input", inputStorage);
 feedbackForm.addEventListener("submit", submitfeedbackForm);
 loadStorage();
 
-
-// try {
-//   // Code that may throw a runtime error
-// } catch (error) {
-//   // Error handling
-// }
-
-// document.addEventListener(
-//   "input",
-//   Throttle((event) => {
-    
-//     // const inputStorage = (event) => {
-//     const feedbackStorage = event.currentTarget.elements
-//     const email = feedbackStorage.email.value;
-//     const message = feedbackStorage.message.value;
-
-//     const feedbackStorageData = {
-//       email,
-//       message,
-//     };
-//       localStorage.setItem(FEEDBACK_FORM_KEY, JSON.stringify(feedbackStorageData));
-//     },
-//    500)
-// );
