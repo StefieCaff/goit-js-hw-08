@@ -17,14 +17,10 @@ function loadStorage() {
         document.querySelector("textarea").value = parsedData.message;
         document.querySelector("input").value = parsedData.email;
     } catch (error) {
-        alert("The fields must be filled in. Thanks!");
         feedbackForm.reset();
         return false;
     }
 };
-
-
-//input function to store input
 
 const inputStorage = (event) => {
   const feedbackStorage = event.currentTarget.elements
@@ -35,8 +31,29 @@ const inputStorage = (event) => {
     email,
     message,
   };
-    localStorage.setItem(FEEDBACK_FORM_KEY, JSON.stringify(feedbackStorageData));
+    
+    if (email == "" || message == "") {
+      localStorage.setItem(FEEDBACK_FORM_KEY, JSON.stringify(feedbackStorageData));
+        
+    } else {
+        return false;   
+      };
 };
+
+
+//input function to store input
+
+// const inputStorage = (event) => {
+//   const feedbackStorage = event.currentTarget.elements
+//   const email = feedbackStorage.email.value;
+//   const message = feedbackStorage.message.value;
+
+//   const feedbackStorageData = {
+//     email,
+//     message,
+//   };
+//     localStorage.setItem(FEEDBACK_FORM_KEY, JSON.stringify(feedbackStorageData));
+// };
 
 //submit function print object in console remove item local storage
 const submitfeedbackForm = (event) => {
@@ -67,4 +84,3 @@ Throttle(inputStorage, 500);
 feedbackForm.addEventListener("input", inputStorage);
 feedbackForm.addEventListener("submit", submitfeedbackForm);
 loadStorage();
-
