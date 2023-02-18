@@ -31,7 +31,7 @@ function selectedImageLibraryModal(event) {
 };
 
 // initialize simple lightbox image library
-let imageLibraryModal = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
+new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
 
 
 //add click event for div/img delegation 
