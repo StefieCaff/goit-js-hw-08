@@ -21,7 +21,9 @@ const galleryMarkup = galleryItems.map((image) =>
 //add gallery html into dom
 gallery.insertAdjacentHTML("beforeEnd", galleryMarkup);
 
-//function to delegate click to div through bubbling when any image is clicked also method to prevent default link behavior
+/* function to delegate click to div through bubbling when any image 
+ is clicked also method to prevent default link behavior */
+
 function selectedImageLibraryModal(event) {
   event.preventDefault();
     
